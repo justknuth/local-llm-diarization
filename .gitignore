@@ -8,10 +8,6 @@ __pycache__/
 # Environment Variables & Secrets
 .env
 
-# Input & Output Folders
-inbound/
-outbound/
-
 # Downloaded AI Models
 models/
 
