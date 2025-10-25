@@ -67,9 +67,5 @@ Before you begin, you **must** have the following:
     * The script will process each file and save a raw `.json` output in the `outbound/` folder. This file contains the transcription text, timestamps, and generic speaker labels (e.g., `SPEAKER_00`, `SPEAKER_01`).
 
 4.  **(Optional) Post-Processing:**
-    * To get a more human-readable output, use the `replace_with_real_names.py` script to map the generic speaker labels to actual names (e.g., "Jake", "Nicole").
+    * To get a more human-readable output, use the `replace_with_real_names.py` script to map the generic speaker labels to actual names (e.g., "John", "Jane").
     *(You may need to edit this script or check its code to see how it expects you to provide the names).*
-
-## A Note on Console Warnings
-
-When you run the script, you will see warnings like this:
