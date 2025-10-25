@@ -13,22 +13,21 @@ os.environ["HF_HUB_DISABLE_SYMLINKS"] = "1"
 
 # Load hugging face token from .env. Token is needed even if model is cached.
 token = os.getenv("HUGGINGFACE_TOKEN")
-
 model = Model.from_pretrained("pyannote/segmentation", use_auth_token=token)
 
-# This downloads the model. It should be run once and then commented out. Use the 'pipeline' below this one.
+# This downloads the model. It should be run once and then commented out. Use the 'pipeline' variable below this one.
 pipeline = Pipeline.from_pretrained("pyannote/speaker-diarization@2.1", use_auth_token=token)
 
-# After you run the script once, and the model is downloaded (Above), the below line gets the model from cache.
+# After you run the script once, and the model is downloaded (Above), the below line gets the model from cache. 
 # pipeline = Pipeline.from_pretrained("pyannote/speaker-diarization", use_auth_token=token)
 pipeline.to(torch.device("cuda"))
-whisper_model = whisper.load_model("large", device="cuda")
+
+# Change the size to "tiny" or "base" if you do not have a GPU with 2-4gb of VRAM. "large" was maxing out my 16gb RAM and 4gb VRAM
+whisper_model = whisper.load_model("small", device="cuda")
 
 print("Whisper model loaded on:", whisper_model.device)
 print("PyTorch using CUDA:", torch.cuda.is_available())
 
-
- # Load Whisper model
 
 
 def get_speaker_for_segment(start, end, diarization):
@@ -64,11 +63,6 @@ def main(input_path, output_path):
             start, end, text = seg["start"], seg["end"], seg["text"]
             speaker = get_speaker_for_segment(start, end, diarization)
             f.write(f"[{start:.2f}s - {end:.2f}s] {speaker}: {text}\n")
-        # f.write(result["text"] + "\n\n")
-        # f.write("=== Diarization Segments ===\n")
-
-       # ''' for turn, _, speaker in diarization.itertracks(yield_label=True):
-       #     f.write(f"{turn.start:.1f}s - {turn.end:.1f}s: Speaker {speaker}\n") '''
 
     print(f"Results saved to {output_path}")
 

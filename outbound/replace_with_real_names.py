@@ -31,5 +31,5 @@ if __name__ == "__main__":
 
     replace_speakers(args.input, args.output, replacements)
 
-    # run this script on the line and replace the filenames with the file to run the function on and then the name of your new file
+    # run this script from the outbound folder. You must use a valid filename and then desired filename
     # python replace_with_real_names.py --input inputfilename.json --output outputfilename.txt
