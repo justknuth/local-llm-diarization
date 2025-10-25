@@ -1,0 +1,24 @@
+# Python Virtual Environment
+venv/
+
+# Python Cache
+__pycache__/
+*.pyc
+
+# Environment Variables & Secrets
+.env
+
+# Input & Output Folders
+inbound/
+outbound/
+
+# Downloaded AI Models
+models/
+
+# Local Azure Storage Emulator Files
+__azurite_db_table__.json
+AzuriteConfig
+
+# VS Code specific
+.vscode/
+
